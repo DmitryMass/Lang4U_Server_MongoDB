@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
-import multer from 'multer';
 import { login, registration } from '../controllers/auth';
+import { bindCourse } from '../controllers/bindcourse';
 import {
     createCourse,
     deleteCourse,
@@ -10,18 +10,19 @@ import {
 } from '../controllers/courses';
 import { sendLessond } from '../controllers/firstLesson';
 import { sendSupport } from '../controllers/support';
+import User from '../models/User';
 import {
     loginValidator,
     registerValidator,
 } from '../validationScheme/authValidation';
 
-const upload = multer(); // formdat
+// const upload = multer(); // formdat
 const router = Router();
 
 router.post('/registration', registerValidator, registration);
 router.post('/login', loginValidator, login);
 router.delete('/logout', async (req: Request, res: Response) => {
-    return res.status(200).send({ message: 'Ok' });
+    return res.status(200).send({ message: 'Ok' }).end();
 });
 
 // Courses Route
@@ -30,6 +31,9 @@ router.get('/course/:id', getCurrentCourse);
 router.post('/course', createCourse);
 router.put('/course/:id', editCourse);
 router.delete('/course/:id', deleteCourse);
+
+// user + course route
+router.post('/course/bindcourse', bindCourse);
 
 // first lesson
 router.post('/lesson', sendLessond);

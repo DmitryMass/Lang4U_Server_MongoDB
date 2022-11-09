@@ -15,7 +15,13 @@ const app = express();
 
 app.use(fileUpload());
 app.use(cookieParser());
-app.use(cors());
+app.use(
+    cors({
+        methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+        origin: '*',
+        credentials: true,
+    })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
