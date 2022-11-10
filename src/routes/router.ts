@@ -10,7 +10,7 @@ import {
 } from '../controllers/courses';
 import { sendLessond } from '../controllers/firstLesson';
 import { sendSupport } from '../controllers/support';
-import User from '../models/User';
+import { getUserInfo } from '../controllers/user';
 import {
     loginValidator,
     registerValidator,
@@ -25,6 +25,7 @@ router.delete('/logout', async (req: Request, res: Response) => {
     return res.status(200).send({ message: 'Ok' }).end();
 });
 
+router.get('/user', getUserInfo);
 // Courses Route
 router.get('/course/', getCourse);
 router.get('/course/:id', getCurrentCourse);

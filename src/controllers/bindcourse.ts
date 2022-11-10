@@ -11,16 +11,25 @@ export const bindCourse: RequestHandler = async (req, res) => {
     const verifyUser: any = verify(authorization!, process.env.SECRET_KEY!);
 
     if (verifyUser) {
-        const bindCourse = await Course.findOne({ link: currentCourse });
         const user = await User.findOne({ _id: verifyUser.id });
-
+        const bindCourse: any = await Course.findOne({
+            link: currentCourse,
+        });
         if (user) {
+            const checker = user?.course.reduce((acc: any, curr: any) => {
+                acc[curr] = curr;
+                return acc;
+            }, {});
+            if (checker[bindCourse?._id.toString()]) {
+                return res
+                    .status(401)
+                    .send({ message: 'Ви вже маєте такий курс' });
+            }
             await user.update({
                 user,
                 course: [...user.course, bindCourse?._id],
             });
             await user.save();
-            console.log(user);
             return res.status(200).send({ message: 'ok' });
         }
     } else {

@@ -40,6 +40,10 @@ export const getCurrentCourse: RequestHandler = async (req, res) => {
         if (course) {
             return res.status(200).send(course);
         }
+        const idCourse = await Course.findOne({ _id: id });
+        if (idCourse) {
+            return res.status(200).send(idCourse);
+        }
         return res.status(404).send({ message: 'Такого курсу немає' });
     } catch (e) {
         return res.status(404).send({ message: 'Такого курсу немає' });
