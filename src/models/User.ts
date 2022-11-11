@@ -13,6 +13,26 @@ const User = new mongoose.Schema(
             require: true,
             null: false,
         },
+        name: {
+            type: String,
+            require: false,
+            null: true,
+        },
+        surname: {
+            type: String,
+            require: false,
+            null: true,
+        },
+        age: {
+            type: String,
+            require: false,
+            null: true,
+        },
+        city: {
+            type: String,
+            require: false,
+            null: true,
+        },
         course: [{ type: Schema.Types.ObjectId, ref: 'Course' }],
     },
     {

@@ -25,7 +25,7 @@ export const bindCourse: RequestHandler = async (req, res) => {
                     .status(401)
                     .send({ message: 'Ви вже маєте такий курс' });
             }
-            await user.update({
+            await user.updateOne({
                 user,
                 course: [...user.course, bindCourse?._id],
             });

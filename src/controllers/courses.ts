@@ -58,7 +58,7 @@ export const editCourse: RequestHandler = async (req, res) => {
         } = req;
         const course = await Course.findOne({ id });
         if (course) {
-            await course.update({ ...body });
+            await course.updateOne({ ...body });
             await course.save();
             return res.status(200).send({ message: 'Ok' });
         }
