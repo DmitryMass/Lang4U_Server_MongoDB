@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { JwtPayload, verify } from 'jsonwebtoken';
+import { verify } from 'jsonwebtoken';
 import Course from '../models/Course';
 import User from '../models/User';
 
