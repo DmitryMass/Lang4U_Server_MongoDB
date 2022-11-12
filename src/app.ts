@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import fileUpload from 'express-fileupload';
 import router from './routes/router';
 import bodyParser from 'body-parser';
-import express from 'express';
+import express, { application } from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
@@ -27,6 +27,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', router);
 app.use(errorHandler);
+
+app.use('/', (req, res) => {
+    return res.status(200).send({ message: 'hello bro' });
+});
 
 const start = async () => {
     try {
