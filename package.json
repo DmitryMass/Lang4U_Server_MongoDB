@@ -12,7 +12,7 @@
     "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "jimmyCo",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
