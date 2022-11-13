@@ -8,7 +8,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node api/index.js",
-    "nodemon": "nodemon api/index.js"
+    "nodemon": "nodemon api/index.js",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
